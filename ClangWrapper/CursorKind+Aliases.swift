@@ -12,14 +12,14 @@ public extension CursorKind {
 //	case FirstDecl                     = UnexposedDecl,
 	public static var FirstDecl:CursorKind {
 		get {
-			return	UnexposedDecl
+			return	unexposedDecl
 		}
 	}
 	
 //	case LastDecl                      = CXXAccessSpecifier,
 	public static var LastDecl:CursorKind {
 		get {
-			return	CXXAccessSpecifier
+			return	cxxAccessSpecifier
 		}
 	}
 	
@@ -33,7 +33,7 @@ public extension CursorKind {
 //	case LastRef                       = VariableRef,
 	public static var LastRef:CursorKind {
 		get {
-			return	VariableRef
+			return	variableRef
 		}
 	}
 	
@@ -47,7 +47,7 @@ public extension CursorKind {
 //	case LastInvalid                   = InvalidCode,
 	public static var LastInvalid:CursorKind {
 		get {
-			return	InvalidCode
+			return	invalidCode
 		}
 	}
 	
@@ -72,7 +72,7 @@ public extension CursorKind {
 //	case LastExpr                      = ObjCSelfExpr,
 	public static var LastExpr:CursorKind {
 		get {
-			return	ObjCSelfExpr
+			return	objCSelfExpr
 		}
 	}
 	
@@ -98,7 +98,7 @@ public extension CursorKind {
 //	case AsmStmt                       = GCCAsmStmt,
 	public static var AsmStmt:CursorKind {
 		get {
-			return	GCCAsmStmt
+			return	gccAsmStmt
 		}
 	}
 	
@@ -106,7 +106,7 @@ public extension CursorKind {
 //	case LastStmt                      = OMPTeamsDirective,
 	public static var LastStmt:CursorKind {
 		get {
-			return	OMPTeamsDirective
+			return	ompTeamsDirective
 		}
 	}
 	
@@ -126,7 +126,7 @@ public extension CursorKind {
 //	case LastAttr                      = CUDASharedAttr,
 	public static var LastAttr:CursorKind {
 		get {
-			return	CUDASharedAttr
+			return	cudaSharedAttr
 		}
 	}
 	
@@ -135,7 +135,7 @@ public extension CursorKind {
 //	case MacroInstantiation            = MacroExpansion,
 	public static var MacroInstantiation:CursorKind {
 		get {
-			return	MacroExpansion
+			return	macroExpansion
 		}
 	}
 	
@@ -144,7 +144,7 @@ public extension CursorKind {
 //	case FirstPreprocessing            = PreprocessingDirective,
 	public static var FirstPreprocessing:CursorKind {
 		get {
-			return	PreprocessingDirective
+			return	preprocessingDirective
 		}
 	}
 	
@@ -152,7 +152,7 @@ public extension CursorKind {
 //	case LastPreprocessing             = InclusionDirective,
 	public static var LastPreprocessing:CursorKind {
 		get {
-			return	InclusionDirective
+			return	inclusionDirective
 		}
 	}
 	
@@ -161,7 +161,7 @@ public extension CursorKind {
 //	case FirstExtraDecl                = ModuleImportDecl,
 	public static var FirstExtraDecl:CursorKind {
 		get {
-			return	ModuleImportDecl
+			return	moduleImportDecl
 		}
 	}
 	
@@ -169,7 +169,7 @@ public extension CursorKind {
 //	case LastExtraDecl                 = ModuleImportDecl
 	public static var LastExtraDecl:CursorKind {
 		get {
-			return	ModuleImportDecl
+			return	moduleImportDecl
 		}
 	}
 	

@@ -8,12 +8,12 @@
 
 import Foundation
 
-func toSwiftString(s:CXString, disposeCXString:Bool) -> String? {
-	let	p	=	clang_getCString(s)
-	if p == nil {
-		return	nil
-	}
-	let	s1	=	String(CString: p, encoding: NSUTF8StringEncoding)!
+func toSwiftString(_ s:CXString, disposeCXString:Bool) -> String? {
+	guard let p = clang_getCString(s) else { return nil }
+    
+    let charP: UnsafePointer<CChar> = p
+    let s1 = String(cString: charP, encoding: .utf8)
+    
 	if disposeCXString {
 		clang_disposeString(s)
 	}

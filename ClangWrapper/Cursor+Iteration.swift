@@ -15,7 +15,7 @@ public extension Cursor {
 			var	cs	=	[] as [Cursor]
 			self.visitChildrenWithBlock { (cursor, parent) -> ChildVisitResult in
 				cs.append(cursor)
-				return	ChildVisitResult.Continue
+				return	ChildVisitResult.continue
 			}
 			return	cs
 		}

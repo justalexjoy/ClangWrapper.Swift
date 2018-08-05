@@ -17,18 +17,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	let	idx			=	Index(excludeDeclarationsFromPCH: false, displayDiagnostics: false)
 	let	mainSplit	=	MainSplitViewControlelr()
 
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		window.contentViewController		=	mainSplit
 		
 		var	ps	=	[] as [String]
-		let	p	=	NSBundle.mainBundle().resourcePath!
+		let	p	=	Bundle.main.resourcePath!
 		let	p1	=	p + "/LLDB.framework/Headers/LLDB.h"
-		
+		""
+        
+        
 		let	args	=	[
 			"-x", "c++",
 			"-std=c++11",
 			"-stdlib=libc++",
-			"-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk",
+			"-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk",
 			"-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 			"-F\(p)",
 		]
@@ -48,9 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		mainSplit.syntaxTree.becomeFirstResponder()
 	}
 
-	func applicationWillTerminate(aNotification: NSNotification) {
+	func applicationWillTerminate(_ aNotification: Notification) {
 	}
-
 
 }
 
@@ -131,12 +132,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //-o /Users/Eonil/Workshop/Temp/Xcode/Derivations/LLDBWrapperOnly-airsqgxbfhgxzbftmxsbryswsmcx/Build/Intermediates/LLDBWrapper.build/Debug/SampleProgram4.build/Objects-normal/x86_64/Try1.o
 
 
-
-
-
-
-
-
 class MainSplitViewControlelr: NSSplitViewController {
 	let	syntaxTree				=	SyntaxTreeViewController()
 	let	typeTree				=	TypeTreeViewController()
@@ -165,8 +160,6 @@ class ScrollViewController: NSViewController {
 		}
 	}
 }
-
-
 
 class SyntaxTreeViewController: ScrollViewController {
 	let	syntaxOutline	=	SyntaxOutlineViewController()

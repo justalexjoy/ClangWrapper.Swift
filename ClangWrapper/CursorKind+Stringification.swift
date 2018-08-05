@@ -13,7 +13,7 @@ extension CursorKind: CustomStringConvertible {
 	public var description:String {
 		get{
 			let	a	=	[firstNameOf(self)] + aliasesOf(self)
-			let	s	=	a.joinWithSeparator("/")
+			let	s	=	a.joined(separator: "/")
 			return	s
 		}
 	}
@@ -32,456 +32,456 @@ extension CursorKind: CustomStringConvertible {
 
 
 
-private func firstNameOf(v:CursorKind) -> String {
+private func firstNameOf(_ v:CursorKind) -> String {
 	switch v {
 		
-	case CursorKind.UnexposedDecl                 : return	"UnexposedDecl"
+	case CursorKind.unexposedDecl                 : return	"UnexposedDecl"
 		
-	case CursorKind.StructDecl                    : return	"StructDecl"
+	case CursorKind.structDecl                    : return	"StructDecl"
 		
-	case CursorKind.UnionDecl                     : return	"UnionDecl"
+	case CursorKind.unionDecl                     : return	"UnionDecl"
 		
-	case CursorKind.ClassDecl                     : return	"ClassDecl"
+	case CursorKind.classDecl                     : return	"ClassDecl"
 		
-	case CursorKind.EnumDecl                      : return	"EnumDecl"
+	case CursorKind.enumDecl                      : return	"EnumDecl"
 		
-	case CursorKind.FieldDecl                     : return	"FieldDecl"
+	case CursorKind.fieldDecl                     : return	"FieldDecl"
 		
-	case CursorKind.EnumConstantDecl              : return	"EnumConstantDecl"
+	case CursorKind.enumConstantDecl              : return	"EnumConstantDecl"
 		
-	case CursorKind.FunctionDecl                  : return	"FunctionDecl"
+	case CursorKind.functionDecl                  : return	"FunctionDecl"
 		
-	case CursorKind.VarDecl                       : return	"VarDecl"
+	case CursorKind.varDecl                       : return	"VarDecl"
 		
-	case CursorKind.ParmDecl                      : return	"ParmDecl"
+	case CursorKind.parmDecl                      : return	"ParmDecl"
 		
-	case CursorKind.ObjCInterfaceDecl             : return	"ObjCInterfaceDecl"
+	case CursorKind.objCInterfaceDecl             : return	"ObjCInterfaceDecl"
 		
-	case CursorKind.ObjCCategoryDecl              : return	"ObjCCategoryDecl"
+	case CursorKind.objCCategoryDecl              : return	"ObjCCategoryDecl"
 		
-	case CursorKind.ObjCProtocolDecl              : return	"ObjCProtocolDecl"
+	case CursorKind.objCProtocolDecl              : return	"ObjCProtocolDecl"
 		
-	case CursorKind.ObjCPropertyDecl              : return	"ObjCPropertyDecl"
+	case CursorKind.objCPropertyDecl              : return	"ObjCPropertyDecl"
 		
-	case CursorKind.ObjCIvarDecl                  : return	"ObjCIvarDecl"
+	case CursorKind.objCIvarDecl                  : return	"ObjCIvarDecl"
 		
-	case CursorKind.ObjCInstanceMethodDecl        : return	"ObjCInstanceMethodDecl"
+	case CursorKind.objCInstanceMethodDecl        : return	"ObjCInstanceMethodDecl"
 		
-	case CursorKind.ObjCClassMethodDecl           : return	"ObjCClassMethodDecl"
+	case CursorKind.objCClassMethodDecl           : return	"ObjCClassMethodDecl"
 		
-	case CursorKind.ObjCImplementationDecl        : return	"ObjCImplementationDecl"
+	case CursorKind.objCImplementationDecl        : return	"ObjCImplementationDecl"
 		
-	case CursorKind.ObjCCategoryImplDecl          : return	"ObjCCategoryImplDecl"
+	case CursorKind.objCCategoryImplDecl          : return	"ObjCCategoryImplDecl"
 		
-	case CursorKind.TypedefDecl                   : return	"TypedefDecl"
+	case CursorKind.typedefDecl                   : return	"TypedefDecl"
 		
-	case CursorKind.CXXMethod                     : return	"CXXMethod"
+	case CursorKind.cxxMethod                     : return	"CXXMethod"
 		
-	case CursorKind.Namespace                     : return	"Namespace"
+	case CursorKind.namespace                     : return	"Namespace"
 		
-	case CursorKind.LinkageSpec                   : return	"LinkageSpec"
+	case CursorKind.linkageSpec                   : return	"LinkageSpec"
 		
-	case CursorKind.Constructor                   : return	"Constructor"
+	case CursorKind.constructor                   : return	"Constructor"
 		
-	case CursorKind.Destructor                    : return	"Destructor"
+	case CursorKind.destructor                    : return	"Destructor"
 		
-	case CursorKind.ConversionFunction            : return	"ConversionFunction"
+	case CursorKind.conversionFunction            : return	"ConversionFunction"
 		
-	case CursorKind.TemplateTypeParameter         : return	"TemplateTypeParameter"
+	case CursorKind.templateTypeParameter         : return	"TemplateTypeParameter"
 		
-	case CursorKind.NonTypeTemplateParameter      : return	"NonTypeTemplateParameter"
+	case CursorKind.nonTypeTemplateParameter      : return	"NonTypeTemplateParameter"
 		
-	case CursorKind.TemplateTemplateParameter     : return	"TemplateTemplateParameter"
+	case CursorKind.templateTemplateParameter     : return	"TemplateTemplateParameter"
 		
-	case CursorKind.FunctionTemplate              : return	"FunctionTemplate"
+	case CursorKind.functionTemplate              : return	"FunctionTemplate"
 		
-	case CursorKind.ClassTemplate                 : return	"ClassTemplate"
+	case CursorKind.classTemplate                 : return	"ClassTemplate"
 		
-	case CursorKind.ClassTemplatePartialSpecialization : return	"ClassTemplatePartialSpecialization"
+	case CursorKind.classTemplatePartialSpecialization : return	"ClassTemplatePartialSpecialization"
 		
-	case CursorKind.NamespaceAlias                : return	"NamespaceAlias"
+	case CursorKind.namespaceAlias                : return	"NamespaceAlias"
 		
-	case CursorKind.UsingDirective                : return	"UsingDirective"
+	case CursorKind.usingDirective                : return	"UsingDirective"
 		
-	case CursorKind.UsingDeclaration              : return	"UsingDeclaration"
+	case CursorKind.usingDeclaration              : return	"UsingDeclaration"
 		
-	case CursorKind.TypeAliasDecl                 : return	"TypeAliasDecl"
+	case CursorKind.typeAliasDecl                 : return	"TypeAliasDecl"
 		
-	case CursorKind.ObjCSynthesizeDecl            : return	"ObjCSynthesizeDecl"
+	case CursorKind.objCSynthesizeDecl            : return	"ObjCSynthesizeDecl"
 		
-	case CursorKind.ObjCDynamicDecl               : return	"ObjCDynamicDecl"
+	case CursorKind.objCDynamicDecl               : return	"ObjCDynamicDecl"
 		
-	case CursorKind.CXXAccessSpecifier            : return	"CXXAccessSpecifier"
+	case CursorKind.cxxAccessSpecifier            : return	"CXXAccessSpecifier"
 		
 		
 		
-	case CursorKind.FirstRef                        : return	"FirstRef"
-	case CursorKind.ObjCProtocolRef               : return	"ObjCProtocolRef"
-	case CursorKind.ObjCClassRef                  : return	"ObjCClassRef"
+	case CursorKind.firstRef                        : return	"FirstRef"
+	case CursorKind.objCProtocolRef               : return	"ObjCProtocolRef"
+	case CursorKind.objCClassRef                  : return	"ObjCClassRef"
 		
-	case CursorKind.TypeRef                       : return	"TypeRef"
-	case CursorKind.CXXBaseSpecifier              : return	"CXXBaseSpecifier"
+	case CursorKind.typeRef                       : return	"TypeRef"
+	case CursorKind.cxxBaseSpecifier              : return	"CXXBaseSpecifier"
 		
-	case CursorKind.TemplateRef                   : return	"TemplateRef"
+	case CursorKind.templateRef                   : return	"TemplateRef"
 		
-	case CursorKind.NamespaceRef                  : return	"NamespaceRef"
+	case CursorKind.namespaceRef                  : return	"NamespaceRef"
 		
-	case CursorKind.MemberRef                     : return	"MemberRef"
+	case CursorKind.memberRef                     : return	"MemberRef"
 		
-	case CursorKind.LabelRef                      : return	"LabelRef"
+	case CursorKind.labelRef                      : return	"LabelRef"
 		
 		
-	case CursorKind.OverloadedDeclRef             : return	"OverloadedDeclRef"
+	case CursorKind.overloadedDeclRef             : return	"OverloadedDeclRef"
 		
 		
-	case CursorKind.VariableRef                   : return	"VariableRef"
+	case CursorKind.variableRef                   : return	"VariableRef"
 		
 		
 		
-	case CursorKind.FirstInvalid                  : return	"FirstInvalid"
-	case CursorKind.NoDeclFound                   : return	"NoDeclFound"
-	case CursorKind.NotImplemented                : return	"NotImplemented"
-	case CursorKind.InvalidCode                   : return	"InvalidCode"
+	case CursorKind.firstInvalid                  : return	"FirstInvalid"
+	case CursorKind.noDeclFound                   : return	"NoDeclFound"
+	case CursorKind.notImplemented                : return	"NotImplemented"
+	case CursorKind.invalidCode                   : return	"InvalidCode"
 		
 		
-	case CursorKind.FirstExpr                     : return	"FirstExpr"
+	case CursorKind.firstExpr                     : return	"FirstExpr"
 		
 		
 		
 		
-	case CursorKind.DeclRefExpr                   : return	"DeclRefExpr"
+	case CursorKind.declRefExpr                   : return	"DeclRefExpr"
 		
 		
-	case CursorKind.MemberRefExpr                 : return	"MemberRefExpr"
+	case CursorKind.memberRefExpr                 : return	"MemberRefExpr"
 		
 		
-	case CursorKind.CallExpr                      : return	"CallExpr"
+	case CursorKind.callExpr                      : return	"CallExpr"
 		
 		
-	case CursorKind.ObjCMessageExpr               : return	"ObjCMessageExpr"
+	case CursorKind.objCMessageExpr               : return	"ObjCMessageExpr"
 		
 		
-	case CursorKind.BlockExpr                     : return	"BlockExpr"
+	case CursorKind.blockExpr                     : return	"BlockExpr"
 		
 		
-	case CursorKind.IntegerLiteral                : return	"IntegerLiteral"
+	case CursorKind.integerLiteral                : return	"IntegerLiteral"
 		
 		
-	case CursorKind.FloatingLiteral               : return	"FloatingLiteral"
+	case CursorKind.floatingLiteral               : return	"FloatingLiteral"
 		
 		
-	case CursorKind.ImaginaryLiteral              : return	"ImaginaryLiteral"
+	case CursorKind.imaginaryLiteral              : return	"ImaginaryLiteral"
 		
 		
-	case CursorKind.StringLiteral                 : return	"StringLiteral"
+	case CursorKind.stringLiteral                 : return	"StringLiteral"
 		
 		
-	case CursorKind.CharacterLiteral              : return	"CharacterLiteral"
+	case CursorKind.characterLiteral              : return	"CharacterLiteral"
 		
 		
-	case CursorKind.ParenExpr                     : return	"ParenExpr"
+	case CursorKind.parenExpr                     : return	"ParenExpr"
 		
 		
-	case CursorKind.UnaryOperator                 : return	"UnaryOperator"
+	case CursorKind.unaryOperator                 : return	"UnaryOperator"
 		
 		
-	case CursorKind.ArraySubscriptExpr            : return	"ArraySubscriptExpr"
+	case CursorKind.arraySubscriptExpr            : return	"ArraySubscriptExpr"
 		
 		
-	case CursorKind.BinaryOperator                : return	"BinaryOperator"
+	case CursorKind.binaryOperator                : return	"BinaryOperator"
 		
 		
-	case CursorKind.CompoundAssignOperator        : return	"CompoundAssignOperator"
+	case CursorKind.compoundAssignOperator        : return	"CompoundAssignOperator"
 		
 		
-	case CursorKind.ConditionalOperator           : return	"ConditionalOperator"
+	case CursorKind.conditionalOperator           : return	"ConditionalOperator"
 		
 		
-	case CursorKind.CStyleCastExpr                : return	"CStyleCastExpr"
+	case CursorKind.cStyleCastExpr                : return	"CStyleCastExpr"
 		
 		
-	case CursorKind.CompoundLiteralExpr           : return	"CompoundLiteralExpr"
+	case CursorKind.compoundLiteralExpr           : return	"CompoundLiteralExpr"
 		
 		
-	case CursorKind.InitListExpr                  : return	"InitListExpr"
+	case CursorKind.initListExpr                  : return	"InitListExpr"
 		
 		
-	case CursorKind.AddrLabelExpr                 : return	"AddrLabelExpr"
+	case CursorKind.addrLabelExpr                 : return	"AddrLabelExpr"
 		
 		
-	case CursorKind.StmtExpr                      : return	"StmtExpr"
+	case CursorKind.stmtExpr                      : return	"StmtExpr"
 		
 		
-	case CursorKind.GenericSelectionExpr          : return	"GenericSelectionExpr"
+	case CursorKind.genericSelectionExpr          : return	"GenericSelectionExpr"
 		
 		
-	case CursorKind.GNUNullExpr                   : return	"GNUNullExpr"
+	case CursorKind.gnuNullExpr                   : return	"GNUNullExpr"
 		
 		
-	case CursorKind.CXXStaticCastExpr             : return	"CXXStaticCastExpr"
+	case CursorKind.cxxStaticCastExpr             : return	"CXXStaticCastExpr"
 		
 		
-	case CursorKind.CXXDynamicCastExpr            : return	"CXXDynamicCastExpr"
+	case CursorKind.cxxDynamicCastExpr            : return	"CXXDynamicCastExpr"
 		
 		
-	case CursorKind.CXXReinterpretCastExpr        : return	"CXXReinterpretCastExpr"
+	case CursorKind.cxxReinterpretCastExpr        : return	"CXXReinterpretCastExpr"
 		
 		
-	case CursorKind.CXXConstCastExpr              : return	"CXXConstCastExpr"
+	case CursorKind.cxxConstCastExpr              : return	"CXXConstCastExpr"
 		
 		
-	case CursorKind.CXXFunctionalCastExpr         : return	"CXXFunctionalCastExpr"
+	case CursorKind.cxxFunctionalCastExpr         : return	"CXXFunctionalCastExpr"
 		
 		
-	case CursorKind.CXXTypeidExpr                 : return	"CXXTypeidExpr"
+	case CursorKind.cxxTypeidExpr                 : return	"CXXTypeidExpr"
 		
 		
-	case CursorKind.CXXBoolLiteralExpr            : return	"CXXBoolLiteralExpr"
+	case CursorKind.cxxBoolLiteralExpr            : return	"CXXBoolLiteralExpr"
 		
 		
-	case CursorKind.CXXNullPtrLiteralExpr         : return	"CXXNullPtrLiteralExpr"
+	case CursorKind.cxxNullPtrLiteralExpr         : return	"CXXNullPtrLiteralExpr"
 		
 		
-	case CursorKind.CXXThisExpr                   : return	"CXXThisExpr"
+	case CursorKind.cxxThisExpr                   : return	"CXXThisExpr"
 		
 		
-	case CursorKind.CXXThrowExpr                  : return	"CXXThrowExpr"
+	case CursorKind.cxxThrowExpr                  : return	"CXXThrowExpr"
 		
 		
-	case CursorKind.CXXNewExpr                    : return	"CXXNewExpr"
+	case CursorKind.cxxNewExpr                    : return	"CXXNewExpr"
 		
 		
-	case CursorKind.CXXDeleteExpr                 : return	"CXXDeleteExpr"
+	case CursorKind.cxxDeleteExpr                 : return	"CXXDeleteExpr"
 		
 		
-	case CursorKind.UnaryExpr                     : return	"UnaryExpr"
+	case CursorKind.unaryExpr                     : return	"UnaryExpr"
 		
 		
-	case CursorKind.ObjCStringLiteral             : return	"ObjCStringLiteral"
+	case CursorKind.objCStringLiteral             : return	"ObjCStringLiteral"
 		
 		
-	case CursorKind.ObjCEncodeExpr                : return	"ObjCEncodeExpr"
+	case CursorKind.objCEncodeExpr                : return	"ObjCEncodeExpr"
 		
 		
-	case CursorKind.ObjCSelectorExpr              : return	"ObjCSelectorExpr"
+	case CursorKind.objCSelectorExpr              : return	"ObjCSelectorExpr"
 		
 		
-	case CursorKind.ObjCProtocolExpr              : return	"ObjCProtocolExpr"
+	case CursorKind.objCProtocolExpr              : return	"ObjCProtocolExpr"
 		
 		
-	case CursorKind.ObjCBridgedCastExpr           : return	"ObjCBridgedCastExpr"
+	case CursorKind.objCBridgedCastExpr           : return	"ObjCBridgedCastExpr"
 		
 		
-	case CursorKind.PackExpansionExpr             : return	"PackExpansionExpr"
+	case CursorKind.packExpansionExpr             : return	"PackExpansionExpr"
 		
 		
-	case CursorKind.SizeOfPackExpr                : return	"SizeOfPackExpr"
+	case CursorKind.sizeOfPackExpr                : return	"SizeOfPackExpr"
 		
 		
-	case CursorKind.LambdaExpr                    : return	"LambdaExpr"
+	case CursorKind.lambdaExpr                    : return	"LambdaExpr"
 		
 		
-	case CursorKind.ObjCBoolLiteralExpr           : return	"ObjCBoolLiteralExpr"
+	case CursorKind.objCBoolLiteralExpr           : return	"ObjCBoolLiteralExpr"
 		
 		
-	case CursorKind.ObjCSelfExpr                  : return	"ObjCSelfExpr"
+	case CursorKind.objCSelfExpr                  : return	"ObjCSelfExpr"
 		
 		
 		
-	case CursorKind.FirstStmt                     : return	"FirstStmt"
+	case CursorKind.firstStmt                     : return	"FirstStmt"
 		
 		
-	case CursorKind.LabelStmt                     : return	"LabelStmt"
+	case CursorKind.labelStmt                     : return	"LabelStmt"
 		
 		
-	case CursorKind.CompoundStmt                  : return	"CompoundStmt"
+	case CursorKind.compoundStmt                  : return	"CompoundStmt"
 		
 		
-	case CursorKind.CaseStmt                      : return	"CaseStmt"
+	case CursorKind.caseStmt                      : return	"CaseStmt"
 		
 		
-	case CursorKind.DefaultStmt                   : return	"DefaultStmt"
+	case CursorKind.defaultStmt                   : return	"DefaultStmt"
 		
 		
-	case CursorKind.IfStmt                        : return	"IfStmt"
+	case CursorKind.ifStmt                        : return	"IfStmt"
 		
 		
-	case CursorKind.SwitchStmt                    : return	"SwitchStmt"
+	case CursorKind.switchStmt                    : return	"SwitchStmt"
 		
 		
-	case CursorKind.WhileStmt                     : return	"WhileStmt"
+	case CursorKind.whileStmt                     : return	"WhileStmt"
 		
 		
-	case CursorKind.DoStmt                        : return	"DoStmt"
+	case CursorKind.doStmt                        : return	"DoStmt"
 		
 		
-	case CursorKind.ForStmt                       : return	"ForStmt"
+	case CursorKind.forStmt                       : return	"ForStmt"
 		
 		
-	case CursorKind.GotoStmt                      : return	"GotoStmt"
+	case CursorKind.gotoStmt                      : return	"GotoStmt"
 		
 		
-	case CursorKind.IndirectGotoStmt              : return	"IndirectGotoStmt"
+	case CursorKind.indirectGotoStmt              : return	"IndirectGotoStmt"
 		
 		
-	case CursorKind.ContinueStmt                  : return	"ContinueStmt"
+	case CursorKind.continueStmt                  : return	"ContinueStmt"
 		
 		
-	case CursorKind.BreakStmt                     : return	"BreakStmt"
+	case CursorKind.breakStmt                     : return	"BreakStmt"
 		
 		
-	case CursorKind.ReturnStmt                    : return	"ReturnStmt"
+	case CursorKind.returnStmt                    : return	"ReturnStmt"
 		
 		
-	case CursorKind.GCCAsmStmt                    : return	"GCCAsmStmt"
+	case CursorKind.gccAsmStmt                    : return	"GCCAsmStmt"
 		
 		
-	case CursorKind.ObjCAtTryStmt                 : return	"ObjCAtTryStmt"
+	case CursorKind.objCAtTryStmt                 : return	"ObjCAtTryStmt"
 		
 		
-	case CursorKind.ObjCAtCatchStmt               : return	"ObjCAtCatchStmt"
+	case CursorKind.objCAtCatchStmt               : return	"ObjCAtCatchStmt"
 		
 		
-	case CursorKind.ObjCAtFinallyStmt             : return	"ObjCAtFinallyStmt"
+	case CursorKind.objCAtFinallyStmt             : return	"ObjCAtFinallyStmt"
 		
 		
-	case CursorKind.ObjCAtThrowStmt               : return	"ObjCAtThrowStmt"
+	case CursorKind.objCAtThrowStmt               : return	"ObjCAtThrowStmt"
 		
 		
-	case CursorKind.ObjCAtSynchronizedStmt        : return	"ObjCAtSynchronizedStmt"
+	case CursorKind.objCAtSynchronizedStmt        : return	"ObjCAtSynchronizedStmt"
 		
 		
-	case CursorKind.ObjCAutoreleasePoolStmt       : return	"ObjCAutoreleasePoolStmt"
+	case CursorKind.objCAutoreleasePoolStmt       : return	"ObjCAutoreleasePoolStmt"
 		
 		
-	case CursorKind.ObjCForCollectionStmt         : return	"ObjCForCollectionStmt"
+	case CursorKind.objCForCollectionStmt         : return	"ObjCForCollectionStmt"
 		
 		
-	case CursorKind.CXXCatchStmt                  : return	"CXXCatchStmt"
+	case CursorKind.cxxCatchStmt                  : return	"CXXCatchStmt"
 		
 		
-	case CursorKind.CXXTryStmt                    : return	"CXXTryStmt"
+	case CursorKind.cxxTryStmt                    : return	"CXXTryStmt"
 		
 		
-	case CursorKind.CXXForRangeStmt               : return	"CXXForRangeStmt"
+	case CursorKind.cxxForRangeStmt               : return	"CXXForRangeStmt"
 		
 		
-	case CursorKind.SEHTryStmt                    : return	"SEHTryStmt"
+	case CursorKind.sehTryStmt                    : return	"SEHTryStmt"
 		
 		
-	case CursorKind.SEHExceptStmt                 : return	"SEHExceptStmt"
+	case CursorKind.sehExceptStmt                 : return	"SEHExceptStmt"
 		
 		
-	case CursorKind.SEHFinallyStmt                : return	"SEHFinallyStmt"
+	case CursorKind.sehFinallyStmt                : return	"SEHFinallyStmt"
 		
 		
-	case CursorKind.MSAsmStmt                     : return	"MSAsmStmt"
+	case CursorKind.msAsmStmt                     : return	"MSAsmStmt"
 		
 		
-	case CursorKind.NullStmt                      : return	"NullStmt"
+	case CursorKind.nullStmt                      : return	"NullStmt"
 		
 		
-	case CursorKind.DeclStmt                      : return	"DeclStmt"
+	case CursorKind.declStmt                      : return	"DeclStmt"
 		
 		
-	case CursorKind.OMPParallelDirective          : return	"OMPParallelDirective"
+	case CursorKind.ompParallelDirective          : return	"OMPParallelDirective"
 		
 		
-	case CursorKind.OMPSimdDirective              : return	"OMPSimdDirective"
+	case CursorKind.ompSimdDirective              : return	"OMPSimdDirective"
 		
 		
-	case CursorKind.OMPForDirective               : return	"OMPForDirective"
+	case CursorKind.ompForDirective               : return	"OMPForDirective"
 		
 		
-	case CursorKind.OMPSectionsDirective          : return	"OMPSectionsDirective"
+	case CursorKind.ompSectionsDirective          : return	"OMPSectionsDirective"
 		
 		
-	case CursorKind.OMPSectionDirective           : return	"OMPSectionDirective"
+	case CursorKind.ompSectionDirective           : return	"OMPSectionDirective"
 		
 		
-	case CursorKind.OMPSingleDirective            : return	"OMPSingleDirective"
+	case CursorKind.ompSingleDirective            : return	"OMPSingleDirective"
 		
 		
-	case CursorKind.OMPParallelForDirective       : return	"OMPParallelForDirective"
+	case CursorKind.ompParallelForDirective       : return	"OMPParallelForDirective"
 		
 		
-	case CursorKind.OMPParallelSectionsDirective  : return	"OMPParallelSectionsDirective"
+	case CursorKind.ompParallelSectionsDirective  : return	"OMPParallelSectionsDirective"
 		
 		
-	case CursorKind.OMPTaskDirective              : return	"OMPTaskDirective"
+	case CursorKind.ompTaskDirective              : return	"OMPTaskDirective"
 		
 		
-	case CursorKind.OMPMasterDirective            : return	"OMPMasterDirective"
+	case CursorKind.ompMasterDirective            : return	"OMPMasterDirective"
 		
 		
-	case CursorKind.OMPCriticalDirective          : return	"OMPCriticalDirective"
+	case CursorKind.ompCriticalDirective          : return	"OMPCriticalDirective"
 		
 		
-	case CursorKind.OMPTaskyieldDirective         : return	"OMPTaskyieldDirective"
+	case CursorKind.ompTaskyieldDirective         : return	"OMPTaskyieldDirective"
 		
 		
-	case CursorKind.OMPBarrierDirective           : return	"OMPBarrierDirective"
+	case CursorKind.ompBarrierDirective           : return	"OMPBarrierDirective"
 		
 		
-	case CursorKind.OMPTaskwaitDirective          : return	"OMPTaskwaitDirective"
+	case CursorKind.ompTaskwaitDirective          : return	"OMPTaskwaitDirective"
 		
 		
-	case CursorKind.OMPFlushDirective             : return	"OMPFlushDirective"
+	case CursorKind.ompFlushDirective             : return	"OMPFlushDirective"
 		
 		
-	case CursorKind.SEHLeaveStmt                  : return	"SEHLeaveStmt"
+	case CursorKind.sehLeaveStmt                  : return	"SEHLeaveStmt"
 		
 		
-	case CursorKind.OMPOrderedDirective           : return	"OMPOrderedDirective"
+	case CursorKind.ompOrderedDirective           : return	"OMPOrderedDirective"
 		
 		
-	case CursorKind.OMPAtomicDirective            : return	"OMPAtomicDirective"
+	case CursorKind.ompAtomicDirective            : return	"OMPAtomicDirective"
 		
 		
-	case CursorKind.OMPForSimdDirective           : return	"OMPForSimdDirective"
+	case CursorKind.ompForSimdDirective           : return	"OMPForSimdDirective"
 		
 		
-	case CursorKind.OMPParallelForSimdDirective   : return	"OMPParallelForSimdDirective"
+	case CursorKind.ompParallelForSimdDirective   : return	"OMPParallelForSimdDirective"
 		
 		
-	case CursorKind.OMPTargetDirective            : return	"OMPTargetDirective"
+	case CursorKind.ompTargetDirective            : return	"OMPTargetDirective"
 		
 		
-	case CursorKind.OMPTeamsDirective             : return	"OMPTeamsDirective"
+	case CursorKind.ompTeamsDirective             : return	"OMPTeamsDirective"
 		
 		
 		
-	case CursorKind.TranslationUnit               : return	"TranslationUnit"
+	case CursorKind.translationUnit               : return	"TranslationUnit"
 		
 		
-	case CursorKind.FirstAttr                     : return	"FirstAttr"
+	case CursorKind.firstAttr                     : return	"FirstAttr"
 		
-	case CursorKind.IBActionAttr                  : return	"IBActionAttr"
-	case CursorKind.IBOutletAttr                  : return	"IBOutletAttr"
-	case CursorKind.IBOutletCollectionAttr        : return	"IBOutletCollectionAttr"
-	case CursorKind.CXXFinalAttr                  : return	"CXXFinalAttr"
-	case CursorKind.CXXOverrideAttr               : return	"CXXOverrideAttr"
-	case CursorKind.AnnotateAttr                  : return	"AnnotateAttr"
-	case CursorKind.AsmLabelAttr                  : return	"AsmLabelAttr"
-	case CursorKind.PackedAttr                    : return	"PackedAttr"
-	case CursorKind.PureAttr                      : return	"PureAttr"
-	case CursorKind.ConstAttr                     : return	"ConstAttr"
-	case CursorKind.NoDuplicateAttr               : return	"NoDuplicateAttr"
-	case CursorKind.CUDAConstantAttr              : return	"CUDAConstantAttr"
-	case CursorKind.CUDADeviceAttr                : return	"CUDADeviceAttr"
-	case CursorKind.CUDAGlobalAttr                : return	"CUDAGlobalAttr"
-	case CursorKind.CUDAHostAttr                  : return	"CUDAHostAttr"
-	case CursorKind.CUDASharedAttr                : return	"CUDASharedAttr"
+	case CursorKind.ibActionAttr                  : return	"IBActionAttr"
+	case CursorKind.ibOutletAttr                  : return	"IBOutletAttr"
+	case CursorKind.ibOutletCollectionAttr        : return	"IBOutletCollectionAttr"
+	case CursorKind.cxxFinalAttr                  : return	"CXXFinalAttr"
+	case CursorKind.cxxOverrideAttr               : return	"CXXOverrideAttr"
+	case CursorKind.annotateAttr                  : return	"AnnotateAttr"
+	case CursorKind.asmLabelAttr                  : return	"AsmLabelAttr"
+	case CursorKind.packedAttr                    : return	"PackedAttr"
+	case CursorKind.pureAttr                      : return	"PureAttr"
+	case CursorKind.constAttr                     : return	"ConstAttr"
+	case CursorKind.noDuplicateAttr               : return	"NoDuplicateAttr"
+	case CursorKind.cudaConstantAttr              : return	"CUDAConstantAttr"
+	case CursorKind.cudaDeviceAttr                : return	"CUDADeviceAttr"
+	case CursorKind.cudaGlobalAttr                : return	"CUDAGlobalAttr"
+	case CursorKind.cudaHostAttr                  : return	"CUDAHostAttr"
+	case CursorKind.cudaSharedAttr                : return	"CUDASharedAttr"
 		
 		
-	case CursorKind.PreprocessingDirective        : return	"PreprocessingDirective"
-	case CursorKind.MacroDefinition               : return	"MacroDefinition"
-	case CursorKind.MacroExpansion                : return	"MacroExpansion"
-	case CursorKind.InclusionDirective            : return	"InclusionDirective"
+	case CursorKind.preprocessingDirective        : return	"PreprocessingDirective"
+	case CursorKind.macroDefinition               : return	"MacroDefinition"
+	case CursorKind.macroExpansion                : return	"MacroExpansion"
+	case CursorKind.inclusionDirective            : return	"InclusionDirective"
 		
 		
 		
-	case CursorKind.ModuleImportDecl              : return	"ModuleImportDecl"
+	case CursorKind.moduleImportDecl              : return	"ModuleImportDecl"
 		
 	}
 	
@@ -494,7 +494,7 @@ private func firstNameOf(v:CursorKind) -> String {
 
 
 
-private func aliasesOf(v:CursorKind) -> [String] {
+private func aliasesOf(_ v:CursorKind) -> [String] {
 	var	s	=	[] as [String]
 	
 	if v == CursorKind.FirstDecl { s.append("FirstDecl") }

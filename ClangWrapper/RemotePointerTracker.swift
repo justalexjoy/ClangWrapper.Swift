@@ -13,7 +13,7 @@
 
 
 protocol TrackableRemoteObjectProxy {
-	typealias	Ptr:Equatable,Hashable
+	associatedtype	Ptr: Hashable
 	
 	var raw:Ptr { get }
 	
@@ -33,13 +33,13 @@ final class RemotePointerTracker<T:TrackableRemoteObjectProxy> {
 	deinit {
 		killAll()
 	}
-	func track(v:T) {
+	func track(_ v:T) {
 		items[v.raw]	=	v
 	}
-	func untrack(v:T) {
-		items.removeValueForKey(v.raw)
+	func untrack(_ v:T) {
+		items.removeValue(forKey: v.raw)
 	}
-	func kill(v:T) {
+	func kill(_ v:T) {
 		untrack(v)
 		v.dispose()
 	}

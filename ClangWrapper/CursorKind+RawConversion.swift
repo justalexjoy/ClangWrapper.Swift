@@ -10,14 +10,15 @@
 
 extension CursorKind {
 	static func fromRaw(raw r:CXCursorKind) -> CursorKind {
-		return	self.init(raw: r)
+		return	CursorKind(rawValue: r.rawValue)!
 	}
 	
-	///	Doesn't work well in Swift 1.2. 
-	///	Use `fromRaw` instead of.
-	init(raw: CXCursorKind) {
-		self	=	fromRaw(raw)
-	}
+//    ///    Doesn't work well in Swift 1.2.
+//    ///    Use `fromRaw` instead of.
+//    init(raw: CXCursorKind) {
+//
+//        self = .fromRaw(raw: raw)
+//    }
 	var raw:CXCursorKind {
 		get {
 			return	CXCursorKind(self.rawValue)
@@ -33,6 +34,6 @@ extension CursorKind {
 
 
 //	I don't know why, but compiler cannot compile if this is in the constructor.
-private func fromRaw(raw:CXCursorKind) -> CursorKind {
+private func fromRaw(_ raw:CXCursorKind) -> CursorKind {
 	return	CursorKind(rawValue: raw.rawValue)!
 }

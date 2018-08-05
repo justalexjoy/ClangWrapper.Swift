@@ -14,11 +14,11 @@ import ClangWrapper
 
 
 enum ASTNodeField {
-	case Spelling
-	case Extent
-	case Kind
+	case spelling
+	case extent
+	case kind
 //	case Mangling
-	case Description
+	case description
 }
 
 class ASTNode {
@@ -26,7 +26,7 @@ class ASTNode {
 	init() {
 	}
 	
-	func textForField(f:ASTNodeField) -> String {
+	func textForField(_ f:ASTNodeField) -> String {
 		return	""
 	}
 	func shouldDisplayAsInactive() -> Bool {
@@ -81,7 +81,7 @@ class TranslationUnitNode: ASTNode {
 		cursorNode				=	CursorNode(translationUnitData.cursor, "[C] cursor")
 		
 		super.init()
-		let	u	=	NSURL.fileURLWithPath(translationUnitData.cursor.spelling)
+        let	u	=	NSURL.fileURL(withPath: translationUnitData.cursor.spelling)
 		self.name	=	"[U] \(u.lastPathComponent)"
 	}
 }
@@ -139,7 +139,7 @@ class CursorNode: ASTNode {
 				print(data.children.count)
 				print(data.visitChildrenWithBlock({ (cursor, parent) -> ChildVisitResult in
 					print(cursor)
-					return	ChildVisitResult.Recurse
+                    return	ChildVisitResult.recurse
 				}))
 			}
 			var	a1	=	[] as [CursorNode]
@@ -152,7 +152,7 @@ class CursorNode: ASTNode {
 			childCursorNodes	=	a1
 			
 			var	a2	=	[] as [CursorNode]
-			if data.kind == CursorKind.FunctionDecl || data.kind == CursorKind.CXXMethod {
+            if data.kind == CursorKind.functionDecl || data.kind == CursorKind.cxxMethod {
 				resultTypeNode	=	TypeNode(data.resultType, "resultType")
 				for i in 0..<data.argumentCursors.count {
 					let	c	=	data.argumentCursors[i]
@@ -175,13 +175,13 @@ class CursorNode: ASTNode {
 		}
 	}
 	
-	override func textForField(f: ASTNodeField) -> String {
+	override func textForField(_ f: ASTNodeField) -> String {
 		switch f {
-		case .Spelling:		return	cursorData.spelling
-		case .Extent:		return	cursorData.extent.description
-		case .Kind:			return	cursorData.kind.description
+		case .spelling:		return	cursorData.spelling
+		case .extent:		return	cursorData.extent.description
+		case .kind:			return	cursorData.kind.description
 //		case .Mangling:		return	cursorData.mangling
-		case .Description:	return	cursorData.description
+		case .description:	return	cursorData.description
 		default:			return	""
 		}
 	}
@@ -237,9 +237,9 @@ class TypeNode: ASTNode {
 		let	pointeeTypeNode:TypeNode?
 		
 		init(_ data:Type) {
-			let	invalid	=	data.kind == TypeKind.Invalid
+            let	invalid	=	data.kind == TypeKind.invalid
 			
-			func numberExpr(n:Int?) -> String {
+			func numberExpr(_ n:Int?) -> String {
 				return	n == nil ? "????" : "\(n!)"
 			}
 			
@@ -248,7 +248,7 @@ class TypeNode: ASTNode {
 			elementTypeNode				=	TypeNode(data.elementType, "elementType x \(numberExpr(data.numberOfElements))")
 			arrayElementTypeNode		=	TypeNode(data.arrayElementType, "arrayElementType x \(numberExpr(data.arraySize))")
 			
-			if data.kind == TypeKind.Invalid {
+            if data.kind == TypeKind.invalid {
 				resultTypeNode		=	nil
 				argumentTypeNodes	=	nil
 				pointeeTypeNode		=	nil
@@ -286,30 +286,30 @@ class TypeNode: ASTNode {
 			
 			
 			pointeeTypeNode	=	{
-				if data.kind == TypeKind.Pointer {
+                if data.kind == TypeKind.pointer {
 					return	TypeNode(data.pointeeType, "[T] pointeeType")
 				}
-				if data.kind == TypeKind.LValueReference {
+                if data.kind == TypeKind.lValueReference {
 					return	TypeNode(data.pointeeType, "[T] pointeeType")
 				}
-				if data.kind == TypeKind.RValueReference {
+                if data.kind == TypeKind.rValueReference {
 					return	TypeNode(data.pointeeType, "[T] pointeeType")
 				}
 				return	nil
 			}()
 		}
 	}
-	override func textForField(f: ASTNodeField) -> String {
+	override func textForField(_ f: ASTNodeField) -> String {
 		switch f {
-		case .Spelling:		return	typeData.spelling
-		case .Kind:			return	typeData.kind.description
+		case .spelling:		return	typeData.spelling
+		case .kind:			return	typeData.kind.description
 //		case .Mangling:		return	""
-		case .Description:	return	typeData.description
+		case .description:	return	typeData.description
 		default:			return	""
 		}
 	}
 	override func shouldDisplayAsInactive() -> Bool {
-		return	typeData.kind == TypeKind.Invalid
+        return	typeData.kind == TypeKind.invalid
 	}
 }
 
@@ -343,13 +343,13 @@ class CursorLinkNode: ASTNode {
 		super.init()
 		self.name		=	name
 	}
-	override func textForField(f: ASTNodeField) -> String {
+	override func textForField(_ f: ASTNodeField) -> String {
 		switch f {
-		case .Spelling:		return	cursorData.spelling
-		case .Extent:		return	cursorData.extent.description
-		case .Kind:			return	cursorData.kind.description
+		case .spelling:		return	cursorData.spelling
+		case .extent:		return	cursorData.extent.description
+		case .kind:			return	cursorData.kind.description
 //		case .Mangling:		return	cursorData.mangling
-		case .Description:	return	cursorData.description
+		case .description:	return	cursorData.description
 		default:			return	""
 		}
 	}

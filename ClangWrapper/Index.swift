@@ -21,21 +21,36 @@ public final class Index {
 		debugLog("clang_disposeIndex")
 	}
 	
-	public func parseTranslationUnit(sourceFilename:String) -> TranslationUnit {
+	public func parseTranslationUnit(_ sourceFilename:String) -> TranslationUnit {
 		let	tuptr	=	sourceFilename.withCString { [unowned self](p:UnsafePointer<Int8>) -> CXTranslationUnit in
 			return	clang_parseTranslationUnit(self.raw, p, nil, 0, nil, 0, 0)
 		}
 		return	TranslationUnit(index: UnmanagedIndexRef(self), raw: tuptr)
 	}
-	public func parseTranslationUnit(sourceFilename:String, commandLineArguments:[String]) -> TranslationUnit {
-		var	tuptr	=	CXTranslationUnit()
-		withCPointerToNullTerminatingCArrayOfCStrings(commandLineArguments, { (pArgs:UnsafePointer<UnsafeMutablePointer<Int8>>) -> () in
-			let	pArgs1	=	UnsafePointer<UnsafePointer<Int8>>(pArgs)
-			tuptr	=	sourceFilename.withCString { (pFilename:UnsafePointer<Int8>) -> CXTranslationUnit in
-				return	clang_parseTranslationUnit(self.raw, pFilename, pArgs1, Int32(commandLineArguments.count), nil, 0, 0)
-			}
-		})
-		
+	public func parseTranslationUnit(_ sourceFilename:String, commandLineArguments:[String]) -> TranslationUnit {
+		var	tuptr: CXTranslationUnit!	=	nil
+//        withCPointerToNullTerminatingCArrayOfCStrings(commandLineArguments, { (pArgs:UnsafePointer<UnsafeMutablePointer<Int8>>) -> () in
+//            //let    pArgs1    =    UnsafePointer<UnsafePointer<Int8>>(pArgs)
+//            
+//            var arg1: UnsafePointer<Int8>? = UnsafePointer<Int8>(pArgs.pointee)
+//            let pArgs1 = withUnsafePointer(to: &arg1, { (pointer) -> UnsafePointer<UnsafePointer<Int8>?> in
+//                return pointer
+//            })
+//            
+//            tuptr    =    sourceFilename.withCString { [unowned self] (pFilename:UnsafePointer<Int8>) -> CXTranslationUnit in
+//                return    clang_parseTranslationUnit(self.raw, pFilename, pArgs1, Int32(commandLineArguments.count), nil, 0, 0)
+//            }
+//        })
+        
+        
+        withCPointerToNullTerminatingCArrayOfCStrings(commandLineArguments) { pArgs -> () in
+            
+            tuptr    =    sourceFilename.withCString { [unowned self] (pFilename:UnsafePointer<Int8>) -> CXTranslationUnit in
+                return    clang_parseTranslationUnit(self.raw, pFilename, pArgs, Int32(commandLineArguments.count), nil, 0, 0)
+            }
+        }
+        
+        
 		return	TranslationUnit(index: UnmanagedIndexRef(self), raw: tuptr)
 	}
 	

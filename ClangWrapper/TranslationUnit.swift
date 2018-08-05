@@ -31,9 +31,9 @@ public struct TranslationUnit: TrackableRemoteObjectProxy {
 			return	clang_getNumDiagnostics(raw)
 		}
 	}
-	public func diagnosticAtIndex(index:UInt32) -> Diagnostic {
+	public func diagnosticAtIndex(_ index:UInt32) -> Diagnostic {
 		let	dptr	=	clang_getDiagnostic(raw, index)
-		return	Diagnostic(index: self.index, raw: dptr)
+		return	Diagnostic(index: self.index, raw: dptr!)
 	}
 	
 	////

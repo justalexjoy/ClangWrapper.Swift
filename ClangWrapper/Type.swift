@@ -40,16 +40,16 @@ public struct Type: Equatable {
 	}
 	public var resultType:Type {
 		get {
-			precondition(self.kind != TypeKind.Invalid)
+			precondition(self.kind != TypeKind.invalid)
 			
 			return	Type(index: index, raw: clang_getResultType(raw))
 		}
 	}
 	public var argumentTypes:[Type]? {
 		get {
-			precondition(self.kind != TypeKind.Invalid)
+			precondition(self.kind != TypeKind.invalid)
 			
-			func argtype(i:UInt32) -> Type {
+			func argtype(_ i:UInt32) -> Type {
 				let	r	=	clang_getArgType(raw, i)
 				let	t	=	Type(index: index, raw: r)
 				return	t

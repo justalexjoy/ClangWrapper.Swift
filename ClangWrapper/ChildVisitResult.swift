@@ -18,17 +18,17 @@ public enum ChildVisitResult: UInt32 {
 	/**
 	* \brief Terminates the cursor traversal.
 	*/
-	case Break
+	case `break`
 	/**
 	* \brief Continues the cursor traversal with the next sibling of
 	* the cursor just visited, without visiting its children.
 	*/
-	case Continue
+	case `continue`
 	/**
 	* \brief Recursively traverse the children of this cursor, using
 	* the same visitor and client data.
 	*/
-	case Recurse
+	case recurse
 }
 
 
@@ -42,13 +42,13 @@ internal extension ChildVisitResult {
 	init(raw: CXChildVisitResult) {
 		switch raw.rawValue {
 		case CXChildVisit_Break.rawValue:
-			self	=	Break
+			self	=	.`break`
 			
 		case CXChildVisit_Continue.rawValue:
-			self	=	Continue
+			self	=	.`continue`
 			
 		case CXChildVisit_Recurse.rawValue:
-			self	=	Recurse
+			self	=	.recurse
 			
 		default:
 			fatalError("Unknown `CXChildVisitResult` constant value.")
@@ -58,9 +58,9 @@ internal extension ChildVisitResult {
 	var raw:CXChildVisitResult {
 		get {
 			switch self {
-			case .Break:		return	CXChildVisit_Break
-			case .Continue:		return	CXChildVisit_Continue
-			case .Recurse:		return	CXChildVisit_Recurse
+			case .break:		return	CXChildVisit_Break
+			case .continue:		return	CXChildVisit_Continue
+			case .recurse:		return	CXChildVisit_Recurse
 			}
 		}
 	}

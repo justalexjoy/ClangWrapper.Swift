@@ -9,20 +9,20 @@
 
 
 public enum CXXAccessSpecifier {
-	case InvalidAccessSpecifier
-	case Public
-	case Protected
-	case Private
+	case invalidAccessSpecifier
+	case `public`
+	case protected
+	case `private`
 }
 
 extension CXXAccessSpecifier: CustomStringConvertible {
 	public var description:String {
 		get {
 			switch self {
-			case .InvalidAccessSpecifier:	return	"InvalidAccessSpecifier"
-			case .Public:					return	"Public"
-			case .Protected:				return	"Protected"
-			case .Private:					return	"Private"
+			case .invalidAccessSpecifier:	return	"InvalidAccessSpecifier"
+			case .public:					return	"Public"
+			case .protected:				return	"Protected"
+			case .private:					return	"Private"
 			}
 		}
 	}
@@ -35,10 +35,10 @@ internal extension CXXAccessSpecifier {
 	var	raw:CX_CXXAccessSpecifier {
 		get {
 			switch self {
-			case InvalidAccessSpecifier:	return	CX_CXXInvalidAccessSpecifier
-			case Public:					return	CX_CXXPublic
-			case Protected:					return	CX_CXXProtected
-			case Private:					return	CX_CXXPrivate
+			case .invalidAccessSpecifier:	return	CX_CXXInvalidAccessSpecifier
+			case .public:					return	CX_CXXPublic
+			case .protected:				return	CX_CXXProtected
+			case .private:					return	CX_CXXPrivate
 			}
 		}
 	}
@@ -47,12 +47,12 @@ internal extension CXXAccessSpecifier {
 
 
 
-private func select(v:CX_CXXAccessSpecifier) -> CXXAccessSpecifier {
+private func select(_ v:CX_CXXAccessSpecifier) -> CXXAccessSpecifier {
 	switch v.rawValue {
-	case CX_CXXInvalidAccessSpecifier.rawValue:		return	CXXAccessSpecifier.InvalidAccessSpecifier
-	case CX_CXXPublic.rawValue:						return	CXXAccessSpecifier.Public
-	case CX_CXXProtected.rawValue:						return	CXXAccessSpecifier.Protected
-	case CX_CXXPrivate.rawValue:						return	CXXAccessSpecifier.Private
+	case CX_CXXInvalidAccessSpecifier.rawValue:		return	CXXAccessSpecifier.invalidAccessSpecifier
+	case CX_CXXPublic.rawValue:						return	CXXAccessSpecifier.public
+	case CX_CXXProtected.rawValue:						return	CXXAccessSpecifier.protected
+	case CX_CXXPrivate.rawValue:						return	CXXAccessSpecifier.private
 	default:
 		fatalError("Unknown value for `CX_CXXAccessSpecifier` enum.")
 	}

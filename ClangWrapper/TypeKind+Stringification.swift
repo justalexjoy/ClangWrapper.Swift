@@ -14,7 +14,7 @@ extension TypeKind: CustomStringConvertible {
 	public var description:String {
 		get {
 			let	a	=	[firstNameOf(self)] + aliasesOf(self)
-			return	a.joinWithSeparator("/")
+			return	a.joined(separator: "/")
 		}
 	}
 }
@@ -23,7 +23,7 @@ extension TypeKind: CustomStringConvertible {
 
 
 
-private func aliasesOf(v:TypeKind) -> [String] {
+private func aliasesOf(_ v:TypeKind) -> [String] {
 	if v == TypeKind.FirstBuiltin {
 		return	["FirstBuiltin"]
 	}
@@ -33,56 +33,56 @@ private func aliasesOf(v:TypeKind) -> [String] {
 	return	[]
 }
 
-private func firstNameOf(v:TypeKind) -> String {
+private func firstNameOf(_ v:TypeKind) -> String {
 	switch v {
-	case TypeKind.Invalid: return "Invalid"
-	case TypeKind.Unexposed: return "Unexposed"
-	case TypeKind.Void: return "Void"
-	case TypeKind.Bool: return "Bool"
-	case TypeKind.Char_U: return "Char_U"
-	case TypeKind.UChar: return "UChar"
-	case TypeKind.Char16: return "Char16"
-	case TypeKind.Char32: return "Char32"
-	case TypeKind.UShort: return "UShort"
-	case TypeKind.UInt: return "UInt"
-	case TypeKind.ULong: return "ULong"
-	case TypeKind.ULongLong: return "ULongLong"
-	case TypeKind.UInt128: return "UInt128"
-	case TypeKind.Char_S: return "Char_S"
-	case TypeKind.SChar: return "SChar"
-	case TypeKind.WChar: return "WChar"
-	case TypeKind.Short: return "Short"
-	case TypeKind.Int: return "Int"
-	case TypeKind.Long: return "Long"
-	case TypeKind.LongLong: return "LongLong"
-	case TypeKind.Int128: return "Int128"
-	case TypeKind.Float: return "Float"
-	case TypeKind.Double: return "Double"
-	case TypeKind.LongDouble: return "LongDouble"
-	case TypeKind.NullPtr: return "NullPtr"
-	case TypeKind.Overload: return "Overload"
-	case TypeKind.Dependent: return "Dependent"
-	case TypeKind.ObjCId: return "ObjCId"
-	case TypeKind.ObjCClass: return "ObjCClass"
-	case TypeKind.ObjCSel: return "ObjCSel"
-	case TypeKind.Complex: return "Complex"
-	case TypeKind.Pointer: return "Pointer"
-	case TypeKind.BlockPointer: return "BlockPointer"
-	case TypeKind.LValueReference: return "LValueReference"
-	case TypeKind.RValueReference: return "RValueReference"
-	case TypeKind.Record: return "Record"
-	case TypeKind.Enum: return "Enum"
-	case TypeKind.Typedef: return "Typedef"
-	case TypeKind.ObjCInterface: return "ObjCInterface"
-	case TypeKind.ObjCObjectPointer: return "ObjCObjectPointer"
-	case TypeKind.FunctionNoProto: return "FunctionNoProto"
-	case TypeKind.FunctionProto: return "FunctionProto"
-	case TypeKind.ConstantArray: return "ConstantArray"
-	case TypeKind.Vector: return "Vector"
-	case TypeKind.IncompleteArray: return "IncompleteArray"
-	case TypeKind.VariableArray: return "VariableArray"
-	case TypeKind.DependentSizedArray: return "DependentSizedArray"
-	case TypeKind.MemberPointer: return "MemberPointer"
+	case TypeKind.invalid: return "Invalid"
+	case TypeKind.unexposed: return "Unexposed"
+	case TypeKind.void: return "Void"
+	case TypeKind.bool: return "Bool"
+	case TypeKind.char_U: return "Char_U"
+	case TypeKind.uChar: return "UChar"
+	case TypeKind.char16: return "Char16"
+	case TypeKind.char32: return "Char32"
+	case TypeKind.uShort: return "UShort"
+	case TypeKind.uInt: return "UInt"
+	case TypeKind.uLong: return "ULong"
+	case TypeKind.uLongLong: return "ULongLong"
+	case TypeKind.uInt128: return "UInt128"
+	case TypeKind.char_S: return "Char_S"
+	case TypeKind.sChar: return "SChar"
+	case TypeKind.wChar: return "WChar"
+	case TypeKind.short: return "Short"
+	case TypeKind.int: return "Int"
+	case TypeKind.long: return "Long"
+	case TypeKind.longLong: return "LongLong"
+	case TypeKind.int128: return "Int128"
+	case TypeKind.float: return "Float"
+	case TypeKind.double: return "Double"
+	case TypeKind.longDouble: return "LongDouble"
+	case TypeKind.nullPtr: return "NullPtr"
+	case TypeKind.overload: return "Overload"
+	case TypeKind.dependent: return "Dependent"
+	case TypeKind.objCId: return "ObjCId"
+	case TypeKind.objCClass: return "ObjCClass"
+	case TypeKind.objCSel: return "ObjCSel"
+	case TypeKind.complex: return "Complex"
+	case TypeKind.pointer: return "Pointer"
+	case TypeKind.blockPointer: return "BlockPointer"
+	case TypeKind.lValueReference: return "LValueReference"
+	case TypeKind.rValueReference: return "RValueReference"
+	case TypeKind.record: return "Record"
+	case TypeKind.enum: return "Enum"
+	case TypeKind.typedef: return "Typedef"
+	case TypeKind.objCInterface: return "ObjCInterface"
+	case TypeKind.objCObjectPointer: return "ObjCObjectPointer"
+	case TypeKind.functionNoProto: return "FunctionNoProto"
+	case TypeKind.functionProto: return "FunctionProto"
+	case TypeKind.constantArray: return "ConstantArray"
+	case TypeKind.vector: return "Vector"
+	case TypeKind.incompleteArray: return "IncompleteArray"
+	case TypeKind.variableArray: return "VariableArray"
+	case TypeKind.dependentSizedArray: return "DependentSizedArray"
+	case TypeKind.memberPointer: return "MemberPointer"
 	}
 }
 

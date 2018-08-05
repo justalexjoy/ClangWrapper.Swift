@@ -16,27 +16,27 @@ public enum TokenKind: UInt32 {
 	/**
 	* \brief A token that contains some kind of punctuation.
 	*/
-	case Punctuation
+	case punctuation
 	
 	/**
 	* \brief A language keyword.
 	*/
-	case Keyword
+	case keyword
 	
 	/**
 	* \brief An identifier (that is not a keyword).
 	*/
-	case Identifier
+	case identifier
 	
 	/**
 	* \brief A numeric, string, or character literal.
 	*/
-	case Literal
+	case literal
 	
 	/**
 	* \brief A comment.
 	*/
-	case Comment
+	case comment
 }
 
 extension TokenKind {
@@ -49,15 +49,15 @@ extension TokenKind {
 	init(raw: CXTokenKind) {
 		switch raw.rawValue {
 		case CXToken_Punctuation.rawValue:
-			self	=	Punctuation
+			self	=	.punctuation
 		case CXToken_Keyword.rawValue:
-			self	=	Keyword
+			self	=	.keyword
 		case CXToken_Identifier.rawValue:
-			self	=	Identifier
+			self	=	.identifier
 		case CXToken_Literal.rawValue:
-			self	=	Literal
+			self	=	.literal
 		case CXToken_Comment.rawValue:
-			self	=	Comment
+			self	=	.comment
 		default:
 			fatalError("Unknown token-kind constant value: \(raw.rawValue)")
 		}
@@ -65,15 +65,15 @@ extension TokenKind {
 	var raw:CXTokenKind {
 		get {
 			switch self {
-			case .Punctuation:
+			case .punctuation:
 				return	CXToken_Punctuation
-			case .Keyword:
+			case .keyword:
 				return	CXToken_Keyword
-			case .Identifier:
+			case .identifier:
 				return	CXToken_Identifier
-			case .Literal:
+			case .literal:
 				return	CXToken_Literal
-			case .Comment:
+			case .comment:
 				return	CXToken_Comment
 			}
 		}

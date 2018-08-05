@@ -10,13 +10,13 @@
 
 public enum RefQualifierKind: UInt32 {
 	///	No ref-qualifier was provided.
-	case None	=	0
+	case none	=	0
 	
 	///	An lvalue ref-qualifier was provided (&).
-	case LValue
+	case lValue
 	
 	///	An rvalue ref-qualifier was provided (&&).
-	case RValue
+	case rValue
 }
 
 extension RefQualifierKind {
@@ -27,9 +27,9 @@ extension RefQualifierKind {
 	///	Use `fromRaw` instead of.
 	init(raw: CXRefQualifierKind) {
 		switch raw.rawValue {
-		case CXRefQualifier_None.rawValue:		self	=	None
-		case CXRefQualifier_LValue.rawValue:	self	=	LValue
-		case CXRefQualifier_RValue.rawValue:	self	=	RValue
+		case CXRefQualifier_None.rawValue:		self	=	.none
+		case CXRefQualifier_LValue.rawValue:	self	=	.lValue
+		case CXRefQualifier_RValue.rawValue:	self	=	.rValue
 		default:
 			fatalError("Unknown `CXRefQualifierKind` value: \(raw)")
 		}
@@ -37,9 +37,9 @@ extension RefQualifierKind {
 	var raw:CXRefQualifierKind {
 		get {
 			switch self {
-			case .None:		return	CXRefQualifier_None
-			case .LValue:	return	CXRefQualifier_LValue
-			case .RValue:	return	CXRefQualifier_RValue
+			case .none:		return	CXRefQualifier_None
+			case .lValue:	return	CXRefQualifier_LValue
+			case .rValue:	return	CXRefQualifier_RValue
 			}
 		}
 	}

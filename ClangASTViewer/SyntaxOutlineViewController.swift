@@ -42,10 +42,10 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.outlineView.setDataSource(self)
-		self.outlineView.setDelegate(self)
+		self.outlineView.dataSource = self
+		self.outlineView.delegate = self
 		
-		func makeColumn(id:Column, _ title:String) -> NSTableColumn {
+		func makeColumn(_ id:Column, _ title:String) -> NSTableColumn {
 			let	c	=	NSTableColumn()
 			c.identifier	=	id.rawValue
 			c.title			=	title
@@ -62,10 +62,10 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 		]
 		cs.map(self.outlineView.addTableColumn)
 		self.outlineView.outlineTableColumn	=	cs[0]
-		self.outlineView.rowSizeStyle		=	NSTableViewRowSizeStyle.Small
+		self.outlineView.rowSizeStyle		=	NSTableViewRowSizeStyle.small
 	}
 	
-	func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if rootNodeRepresentation == nil {
 			return	0
 		}
@@ -80,7 +80,7 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 //	func outlineView(outlineView: NSOutlineView, objectValueForTableColumn tableColumn: NSTableColumn?, byItem item: AnyObject?) -> AnyObject? {
 //		
 //	}
-	func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
 			return	rootNodeRepresentation!
 		}
@@ -90,12 +90,12 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 		}
 		fatalError()
 	}
-	func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		return	self.outlineView(outlineView, numberOfChildrenOfItem: item) > 0
 	}
-	func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
+	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		func getView() -> NSTableCellView {
-			if let v1:AnyObject = outlineView.makeViewWithIdentifier(tableColumn!.identifier, owner: nil) {
+			if let v1:AnyObject = outlineView.make(withIdentifier: tableColumn!.identifier, owner: nil) {
 				return	v1 as! NSTableCellView
 			}
 			
@@ -109,17 +109,17 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 			v.addSubview(t)
 //			v.addSubview(m)
 
-			t.editable			=	false
-			t.bordered			=	false
-			t.lineBreakMode		=	NSLineBreakMode.ByTruncatingTail
-			t.backgroundColor	=	NSColor.clearColor()
+			t.isEditable			=	false
+			t.isBordered			=	false
+			t.lineBreakMode		=	NSLineBreakMode.byTruncatingTail
+			t.backgroundColor	=	NSColor.clear
 
 			return	v
 		}
 		
 		////
 		
-		func selectText(item:AnyObject) -> String {
+		func selectText(_ item:AnyObject) -> String {
 			let	col	=	Column(rawValue: tableColumn!.identifier)!
 			
 			if col == Column.Name {
@@ -127,22 +127,22 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 			}
 			if let n = item as? ASTNode {
 				switch col {
-				case .Spelling:		return	n.textForField(ASTNodeField.Spelling)
-				case .Kind:			return	n.textForField(ASTNodeField.Kind)
-				case .Extent:		return	n.textForField(ASTNodeField.Extent)
-				case .Description:	return	n.textForField(ASTNodeField.Description)
+				case .Spelling:		return	n.textForField(ASTNodeField.spelling)
+				case .Kind:			return	n.textForField(ASTNodeField.kind)
+				case .Extent:		return	n.textForField(ASTNodeField.extent)
+				case .Description:	return	n.textForField(ASTNodeField.description)
 				default:
 					fatalError()
 				}
 			}
 			fatalError()
 		}
-		func selectForeColor(item:AnyObject) -> NSColor {
+		func selectForeColor(_ item:AnyObject) -> NSColor {
 			if let n = item as? ASTNode {
 //				if n.shouldDisplayAsInactive() {
 //					return	NSColor.disabledControlTextColor()
 //				} else {
-					return	NSColor.controlTextColor()
+					return	NSColor.controlTextColor
 //				}
 			}
 			fatalError()
@@ -151,8 +151,8 @@ class SyntaxOutlineViewController: NSViewController, NSOutlineViewDataSource, NS
 		////
 		
 		let	v						=	getView()
-		v.textField!.stringValue	=	selectText(item)
-		v.textField!.textColor		=	selectForeColor(item)
+		v.textField!.stringValue	=	selectText(item as AnyObject)
+		v.textField!.textColor		=	selectForeColor(item as AnyObject)
 		
 		return	v
 	}

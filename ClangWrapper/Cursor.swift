@@ -19,12 +19,12 @@ public struct Cursor {
 	public var translationUnit:TranslationUnit {
 		get {
 			let	r	=	clang_Cursor_getTranslationUnit(raw)
-			return	TranslationUnit(index: index, raw: r)
+			return	TranslationUnit(index: index, raw: r!)
 		}
 	}
-	public func visitChildrenWithBlock(block:(cursor:Cursor, parent:Cursor)->ChildVisitResult) {
+	public func visitChildrenWithBlock(_ block:@escaping (_ cursor:Cursor, _ parent:Cursor)->ChildVisitResult) {
 		let	r	=	clang_visitChildrenWithBlock(raw) { (cursor:CXCursor, parent:CXCursor) -> CXChildVisitResult in
-			let	r1	=	block(cursor: Cursor(index: self.index, raw: cursor), parent: Cursor(index: self.index, raw: parent))
+			let	r1	=	block(Cursor(index: self.index, raw: cursor), Cursor(index: self.index, raw: parent))
 			
 			return	r1.raw
 		}

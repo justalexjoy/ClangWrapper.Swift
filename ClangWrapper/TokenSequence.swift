@@ -9,7 +9,7 @@
 
 
 //public struct TokenSequence: CollectionType {
-public struct TokenSequence: SequenceType {
+public struct TokenSequence: Sequence {
 	public func dispose() {
 		index.allTokenSequences.untrack(self)
 		clang_disposeTokens(rawtu, rawptr, rawcount)
@@ -30,14 +30,14 @@ public struct TokenSequence: SequenceType {
 			return	Token(sequence: self, index: index)
 		}
 	}
-	public func generate() -> AnyGenerator<Token> {
+	public func makeIterator() -> AnyIterator<Token> {
 		var	i	=	0
-		return	anyGenerator { 
+		return	AnyIterator { 
 			if i == Int(self.rawcount) {
 				return	nil
 			} else {
 				let	tk	=	Token(sequence: self, index: i)
-				i++
+				i += 1
 				return	tk
 			}
 		}
@@ -45,7 +45,7 @@ public struct TokenSequence: SequenceType {
 	
 	////
 	
-	init(index:UnmanagedIndexRef, rawtu:CXTranslationUnit, rawptr: UnsafeMutablePointer<CXToken>, rawcount:UInt32) {
+	init(index:UnmanagedIndexRef, rawtu:CXTranslationUnit, rawptr: UnsafeMutablePointer<CXToken>?, rawcount:UInt32) {
 		self.index		=	index
 		self.rawtu		=	rawtu
 		self.rawptr		=	rawptr
@@ -54,13 +54,13 @@ public struct TokenSequence: SequenceType {
 	
 	let	index:UnmanagedIndexRef
 	let	rawtu:CXTranslationUnit
-	let	rawptr:UnsafeMutablePointer<CXToken>
+	let	rawptr:UnsafeMutablePointer<CXToken>?
 	let	rawcount:UInt32
 }
 extension TokenSequence: TrackableRemoteObjectProxy {
-	var raw:UnsafeMutablePointer<CXToken> {
+	var raw: UnsafeMutablePointer<CXToken> {
 		get {
-			return	rawptr
+			return	rawptr!
 		}
 	}
 }

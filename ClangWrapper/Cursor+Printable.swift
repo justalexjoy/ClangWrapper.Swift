@@ -20,13 +20,13 @@ extension Cursor: CustomStringConvertible {
 
 
 
-private func getExtras(c:Cursor) -> String? {
-	if c.kind == CursorKind.CXXAccessSpecifier {
+private func getExtras(_ c:Cursor) -> String? {
+	if c.kind == CursorKind.cxxAccessSpecifier {
 	}
 	switch c.kind {
-	case .CXXAccessSpecifier:	return	"CXXAccessSpecifier = \(c.CXXAccessSpecifier.description)"
-	case .EnumDecl:				return	"underlying type = \(c.enumDeclarationIntegerType)"
-	case .EnumConstantDecl:		return	"constant value = \(c.enumConstantDeclarationValue), constant unsigned value = \(c.enumConstantDeclarationUnsignedValue)"
+	case .cxxAccessSpecifier:	return	"CXXAccessSpecifier = \(c.CXXAccessSpecifier.description)"
+	case .enumDecl:				return	"underlying type = \(c.enumDeclarationIntegerType)"
+	case .enumConstantDecl:		return	"constant value = \(c.enumConstantDeclarationValue), constant unsigned value = \(c.enumConstantDeclarationUnsignedValue)"
 //	case .CXXMethod:
 //		let	a	=	c.argumentCursors.map({ x in x.spelling })
 //		let	b	=	join(", ", a)

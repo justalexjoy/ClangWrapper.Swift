@@ -43,7 +43,7 @@ public struct Token {
 	
 	var raw:CXToken {
 		get {
-			return	sequence.rawptr[index]
+			return	sequence.rawptr![index]
 		}
 	}
 }

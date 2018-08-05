@@ -25,64 +25,64 @@ public enum TypeKind: UInt32 {
 	/**
 	* \brief Represents an invalid type (e.g., where no type is available).
 	*/
-	case Invalid = 0
+	case invalid = 0
 	
 	/**
 	* \brief A type whose specific kind is not exposed via this
 	* interface.
 	*/
-	case Unexposed = 1
+	case unexposed = 1
 	
 	/* Builtin types */
-	case Void = 2
-	case Bool = 3
-	case Char_U = 4
-	case UChar = 5
-	case Char16 = 6
-	case Char32 = 7
-	case UShort = 8
-	case UInt = 9
-	case ULong = 10
-	case ULongLong = 11
-	case UInt128 = 12
-	case Char_S = 13
-	case SChar = 14
-	case WChar = 15
-	case Short = 16
-	case Int = 17
-	case Long = 18
-	case LongLong = 19
-	case Int128 = 20
-	case Float = 21
-	case Double = 22
-	case LongDouble = 23
-	case NullPtr = 24
-	case Overload = 25
-	case Dependent = 26
-	case ObjCId = 27
-	case ObjCClass = 28
-	case ObjCSel = 29
+	case void = 2
+	case bool = 3
+	case char_U = 4
+	case uChar = 5
+	case char16 = 6
+	case char32 = 7
+	case uShort = 8
+	case uInt = 9
+	case uLong = 10
+	case uLongLong = 11
+	case uInt128 = 12
+	case char_S = 13
+	case sChar = 14
+	case wChar = 15
+	case short = 16
+	case int = 17
+	case long = 18
+	case longLong = 19
+	case int128 = 20
+	case float = 21
+	case double = 22
+	case longDouble = 23
+	case nullPtr = 24
+	case overload = 25
+	case dependent = 26
+	case objCId = 27
+	case objCClass = 28
+	case objCSel = 29
 //	case FirstBuiltin = case Void
 //	case LastBuiltin  = case ObjCSel
 	
-	case Complex = 100
-	case Pointer = 101
-	case BlockPointer = 102
-	case LValueReference = 103
-	case RValueReference = 104
-	case Record = 105
-	case Enum = 106
-	case Typedef = 107
-	case ObjCInterface = 108
-	case ObjCObjectPointer = 109
-	case FunctionNoProto = 110
-	case FunctionProto = 111
-	case ConstantArray = 112
-	case Vector = 113
-	case IncompleteArray = 114
-	case VariableArray = 115
-	case DependentSizedArray = 116
-	case MemberPointer = 117
+	case complex = 100
+	case pointer = 101
+	case blockPointer = 102
+	case lValueReference = 103
+	case rValueReference = 104
+	case record = 105
+	case `enum` = 106
+	case typedef = 107
+	case objCInterface = 108
+	case objCObjectPointer = 109
+	case functionNoProto = 110
+	case functionProto = 111
+	case constantArray = 112
+	case vector = 113
+	case incompleteArray = 114
+	case variableArray = 115
+	case dependentSizedArray = 116
+	case memberPointer = 117
 	
 	
 };
@@ -110,12 +110,12 @@ internal extension TypeKind {
 public extension TypeKind {
 	public static var FirstBuiltin:TypeKind {
 		get {
-			return	Void
+			return	void
 		}
 	}
 	public static var LastBuiltin:TypeKind {
 		get {
-			return	ObjCSel
+			return	objCSel
 		}
 	}
 }

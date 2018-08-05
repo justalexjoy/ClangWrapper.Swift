@@ -9,10 +9,15 @@
 
 
 public extension TranslationUnit {
-	public func tokenize(range:SourceRange) -> TokenSequence {
-		var	tkrawptr	=	nil as UnsafeMutablePointer<CXToken>
-		var	tkrawcount	=	0 as UInt32
-		clang_tokenize(raw, range.raw, &tkrawptr, &tkrawcount)
+	public func tokenize(_ range:SourceRange) -> TokenSequence {
+        var	tkrawptr: UnsafeMutablePointer<CXToken>? = nil
+        var	tkrawcount: UInt32 = 0
+        
+        var mutTkrawptr = withUnsafeMutablePointer(to: &tkrawptr) { (mutablePointer) -> UnsafeMutablePointer<UnsafeMutablePointer<CXToken>?> in
+            return mutablePointer
+        }
+        
+		clang_tokenize(raw, range.raw, mutTkrawptr, &tkrawcount)
 		return	TokenSequence(index: index, rawtu: raw, rawptr: tkrawptr, rawcount: tkrawcount)
 	}
 //	public func annotateTokens(tokens:TokenSequence, cursors:[Cursor]) {
