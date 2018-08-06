@@ -468,8 +468,20 @@ public enum CursorKind: UInt32 {
 	/** \brief Represents the "self" expression in an Objective-C method.
 	*/
 	case objCSelfExpr                  = 146
-	
-//	case LastExpr                      = CXCursor_ObjCSelfExpr,
+    
+    /** OpenMP 4.0 [2.4, Array Section].
+     */
+    case ompArraySectionExpr           = 147
+    
+    /** Represents an @available(...) check.
+     */
+    case objCAvailabilityCheckExpr     = 148
+    
+    /**
+     * Fixed point literal
+     */
+    case fixedPointLiteral             = 149
+
 	
 	/* Statements */
 	case firstStmt                     = 200
@@ -711,8 +723,111 @@ public enum CursorKind: UInt32 {
 	/** \brief OpenMP teams directive.
 	*/
 	case ompTeamsDirective             = 253
-	
-//	case LastStmt                      = CXCursor_OMPTeamsDirective,
+    
+    /** OpenMP taskgroup directive.
+     */
+    case ompTaskgroupDirective         = 254
+    
+    /** OpenMP cancellation point directive.
+     */
+    case ompCancellationPointDirective = 255
+    
+    /** OpenMP cancel directive.
+     */
+    case ompCancelDirective            = 256
+    
+    /** OpenMP target data directive.
+     */
+    case ompTargetDataDirective        = 257
+    
+    /** OpenMP taskloop directive.
+     */
+    case ompTaskLoopDirective          = 258
+    
+    /** OpenMP taskloop simd directive.
+     */
+    case ompTaskLoopSimdDirective      = 259
+    
+    /** OpenMP distribute directive.
+     */
+    case ompDistributeDirective        = 260
+    
+    /** OpenMP target enter data directive.
+     */
+    case ompTargetEnterDataDirective   = 261
+    
+    /** OpenMP target exit data directive.
+     */
+    case ompTargetExitDataDirective    = 262
+    
+    /** OpenMP target parallel directive.
+     */
+    case ompTargetParallelDirective    = 263
+    
+    /** OpenMP target parallel for directive.
+     */
+    case ompTargetParallelForDirective = 264
+    
+    /** OpenMP target update directive.
+     */
+    case ompTargetUpdateDirective      = 265
+    
+    /** OpenMP distribute parallel for directive.
+     */
+    case ompDistributeParallelForDirective = 266
+    
+    /** OpenMP distribute parallel for simd directive.
+     */
+    case ompDistributeParallelForSimdDirective = 267
+    
+    /** OpenMP distribute simd directive.
+     */
+    case ompDistributeSimdDirective = 268
+    
+    /** OpenMP target parallel for simd directive.
+     */
+    case ompTargetParallelForSimdDirective = 269
+    
+    /** OpenMP target simd directive.
+     */
+    case ompTargetSimdDirective = 270
+    
+    /** OpenMP teams distribute directive.
+     */
+    case ompTeamsDistributeDirective = 271
+    
+    /** OpenMP teams distribute simd directive.
+     */
+    case ompTeamsDistributeSimdDirective = 272
+    
+    /** OpenMP teams distribute parallel for simd directive.
+     */
+    case ompTeamsDistributeParallelForSimdDirective = 273
+    
+    /** OpenMP teams distribute parallel for directive.
+     */
+    case ompTeamsDistributeParallelForDirective = 274
+    
+    /** OpenMP target teams directive.
+     */
+    case ompTargetTeamsDirective = 275
+    
+    /** OpenMP target teams distribute directive.
+     */
+    case ompTargetTeamsDistributeDirective = 276
+    
+    /** OpenMP target teams distribute parallel for directive.
+     */
+    case ompTargetTeamsDistributeParallelForDirective = 277
+    
+    /** OpenMP target teams distribute parallel for simd directive.
+     */
+    case ompTargetTeamsDistributeParallelForSimdDirective = 278
+    
+    /** OpenMP target teams distribute simd directive.
+     */
+    case ompTargetTeamsDistributeSimdDirective = 279
+    
 	
 	/**
 	* \brief Cursor that represents the translation unit itself.
@@ -746,7 +861,27 @@ public enum CursorKind: UInt32 {
 	case cudaGlobalAttr                = 414
 	case cudaHostAttr                  = 415
 	case cudaSharedAttr                = 416
-//	case LastAttr                      = CXCursor_CUDASharedAttr,
+    case visibilityAttr                = 417
+    case dllExport                     = 418
+    case dllImport                     = 419
+    case nsReturnsRetained             = 420
+    case nsReturnsNotRetained          = 421
+    case nsReturnsAutoreleased         = 422
+    case nsConsumesSelf                = 423
+    case nsConsumed                    = 424
+    case objCException                 = 425
+    case objCNSObject                  = 426
+    case objCIndependentClass          = 427
+    case objCPreciseLifetime           = 428
+    case objCReturnsInnerPointer       = 429
+    case objCRequiresSuper             = 430
+    case objCRootClass                 = 431
+    case objCSubclassingRestricted     = 432
+    case objCExplicitProtocolImpl      = 433
+    case objCDesignatedInitializer     = 434
+    case objCRuntimeVisible            = 435
+    case objCBoxable                   = 436
+    case flagEnum                      = 437
 	
 	/* Preprocessing */
 	case preprocessingDirective        = 500
@@ -764,6 +899,13 @@ public enum CursorKind: UInt32 {
 	case moduleImportDecl              = 600
 //	case FirstExtraDecl                = CXCursor_ModuleImportDecl,
 //	case LastExtraDecl                 = CXCursor_ModuleImportDecl
+    case typeAliasTemplateDecl         = 601
+    /**
+     * A static_assert or _Static_assert node
+     */
+    case staticAssert                  = 602
+    /**
+     * a friend declaration.
+     */
+    case friendDecl                    = 603
 }
-
-

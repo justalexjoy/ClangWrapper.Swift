@@ -22,13 +22,18 @@ public final class Index {
 	}
 	
 	public func parseTranslationUnit(_ sourceFilename:String) -> TranslationUnit {
-		let	tuptr	=	sourceFilename.withCString { [unowned self](p:UnsafePointer<Int8>) -> CXTranslationUnit in
-			return	clang_parseTranslationUnit(self.raw, p, nil, 0, nil, 0, 0)
+		let	tuptr	=	sourceFilename.withCString { [unowned self] (p:UnsafePointer<Int8>) -> CXTranslationUnit in
+            
+			return  clang_parseTranslationUnit( self.raw,
+                                               p,
+                                               nil, 0,
+                                               nil, 0, 0)
 		}
 		return	TranslationUnit(index: UnmanagedIndexRef(self), raw: tuptr)
 	}
 	public func parseTranslationUnit(_ sourceFilename:String, commandLineArguments:[String]) -> TranslationUnit {
 		var	tuptr: CXTranslationUnit!	=	nil
+        
 //        withCPointerToNullTerminatingCArrayOfCStrings(commandLineArguments, { (pArgs:UnsafePointer<UnsafeMutablePointer<Int8>>) -> () in
 //            //let    pArgs1    =    UnsafePointer<UnsafePointer<Int8>>(pArgs)
 //            
@@ -42,14 +47,20 @@ public final class Index {
 //            }
 //        })
         
-        
+
         withCPointerToNullTerminatingCArrayOfCStrings(commandLineArguments) { pArgs -> () in
-            
-            tuptr    =    sourceFilename.withCString { [unowned self] (pFilename:UnsafePointer<Int8>) -> CXTranslationUnit in
-                return    clang_parseTranslationUnit(self.raw, pFilename, pArgs, Int32(commandLineArguments.count), nil, 0, 0)
+            tuptr = sourceFilename.withCString { [unowned self] (pFilename: UnsafePointer<Int8>) -> CXTranslationUnit? in
+                
+                let translationUnit = clang_parseTranslationUnit(self.raw,
+                                                                 pFilename,
+                                                                 pArgs,
+                                                                 Int32(commandLineArguments.count),
+                                                                 nil, 0, 0)
+                
+                return translationUnit
             }
         }
-        
+        assert(tuptr != nil )
         
 		return	TranslationUnit(index: UnmanagedIndexRef(self), raw: tuptr)
 	}

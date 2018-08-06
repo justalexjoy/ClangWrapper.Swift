@@ -20,22 +20,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		window.contentViewController		=	mainSplit
 		
-		var	ps	=	[] as [String]
-		let	p	=	Bundle.main.resourcePath!
-		let	p1	=	p + "/LLDB.framework/Headers/LLDB.h"
-		""
+        let p = Bundle.main.resourcePath!
+        let p1 = p + "/LLDB.framework/Headers/LLDB.h"
+
+        let args: [String] = [
+//            "-x", "objc",
+//            "-std=c++11",
+//            //"-stdlib=libc++",
+            "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk",
+            "-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers",
+            "-F\(p)",
+        ]
         
         
-		let	args	=	[
-			"-x", "c++",
-			"-std=c++11",
-			"-stdlib=libc++",
-			"-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk",
-			"-I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-			"-F\(p)",
-		]
-		let	tu		=	self.idx.parseTranslationUnit(p1, commandLineArguments: args)
-		
+      
+        //let    tu = self.idx.parseTranslationUnit(p1, commandLineArguments: args)
+        
+        //let path = "~/Documents/chromium/chromium/src/ios/web_view/internal/web_view_network_delegate.h"
+        let path = Bundle.main.path(forResource: "chrome_url_util", ofType: "h")!
+        
+        let myTUnit = self.idx.parseTranslationUnit(path, commandLineArguments: args)
+		let tu = myTUnit
+        
+        
 		print(tu.diagnostics)
 		precondition(tu.diagnostics.count == 0)
 		

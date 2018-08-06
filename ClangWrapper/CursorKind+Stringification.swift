@@ -32,8 +32,8 @@ extension CursorKind: CustomStringConvertible {
 
 
 
-private func firstNameOf(_ v:CursorKind) -> String {
-	switch v {
+private func firstNameOf(_ kind:CursorKind) -> String {
+	switch kind {
 		
 	case CursorKind.unexposedDecl                 : return	"UnexposedDecl"
 		
@@ -479,11 +479,11 @@ private func firstNameOf(_ v:CursorKind) -> String {
 	case CursorKind.macroExpansion                : return	"MacroExpansion"
 	case CursorKind.inclusionDirective            : return	"InclusionDirective"
 		
-		
-		
 	case CursorKind.moduleImportDecl              : return	"ModuleImportDecl"
 		
-	}
+    default:
+        return "Other Kind"
+    }
 	
 }
 
@@ -494,50 +494,44 @@ private func firstNameOf(_ v:CursorKind) -> String {
 
 
 
-private func aliasesOf(_ v:CursorKind) -> [String] {
+private func aliasesOf(_ kind: CursorKind) -> [String] {
 	var	s	=	[] as [String]
 	
-	if v == CursorKind.FirstDecl { s.append("FirstDecl") }
+	if kind == CursorKind.FirstDecl { s.append("FirstDecl") }
 	
-	if v == CursorKind.LastDecl { s.append("LastDecl") }
+	if kind == CursorKind.LastDecl { s.append("LastDecl") }
 	
-	if v == CursorKind.ObjCSuperClassRef { s.append("ObjCSuperClassRef") }
+	if kind == CursorKind.ObjCSuperClassRef { s.append("ObjCSuperClassRef") }
 	
-	if v == CursorKind.LastRef { s.append("LastRef") }
+	if kind == CursorKind.LastRef { s.append("LastRef") }
 	
-	if v == CursorKind.InvalidFile { s.append("InvalidFile") }
+	if kind == CursorKind.InvalidFile { s.append("InvalidFile") }
 	
-	if v == CursorKind.LastInvalid { s.append("LastInvalid") }
+	if kind == CursorKind.LastInvalid { s.append("LastInvalid") }
 	
-	if v == CursorKind.UnexposedExpr { s.append("UnexposedExpr") }
+	if kind == CursorKind.UnexposedExpr { s.append("UnexposedExpr") }
 	
-	if v == CursorKind.LastExpr { s.append("LastExpr") }
+	if kind == CursorKind.LastExpr { s.append("LastExpr") }
 	
+	if kind == CursorKind.UnexposedStmt { s.append("UnexposedStmt") }
 	
-	if v == CursorKind.UnexposedStmt { s.append("UnexposedStmt") }
+	if kind == CursorKind.AsmStmt { s.append("AsmStmt") }
 	
-	if v == CursorKind.AsmStmt { s.append("AsmStmt") }
+	if kind == CursorKind.LastStmt { s.append("LastStmt") }
 	
-	if v == CursorKind.LastStmt { s.append("LastStmt") }
+	if kind == CursorKind.UnexposedAttr { s.append("UnexposedAttr") }
 	
-	if v == CursorKind.UnexposedAttr { s.append("UnexposedAttr") }
+	if kind == CursorKind.LastAttr { s.append("LastAttr") }
 	
-	if v == CursorKind.LastAttr { s.append("LastAttr") }
+	if kind == CursorKind.MacroInstantiation { s.append("MacroInstantiation") }
 	
+	if kind == CursorKind.FirstPreprocessing { s.append("FirstPreprocessing") }
 	
-	if v == CursorKind.MacroInstantiation { s.append("MacroInstantiation") }
+	if kind == CursorKind.LastPreprocessing { s.append("LastPreprocessing") }
 	
+	if kind == CursorKind.FirstExtraDecl { s.append("FirstExtraDecl") }
 	
-	if v == CursorKind.FirstPreprocessing { s.append("FirstPreprocessing") }
-	
-	
-	if v == CursorKind.LastPreprocessing { s.append("LastPreprocessing") }
-	
-	
-	if v == CursorKind.FirstExtraDecl { s.append("FirstExtraDecl") }
-	
-	
-	if v == CursorKind.LastExtraDecl { s.append("LastExtraDecl") }
+	if kind == CursorKind.LastExtraDecl { s.append("LastExtraDecl") }
 	
 
 	return	s

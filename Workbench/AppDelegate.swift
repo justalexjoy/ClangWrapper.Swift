@@ -15,8 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet weak var window: NSWindow!
 
 
-	func applicationDidFinishLaunching(aNotification: NSNotification) {
-		func run(f:()->()) {
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		func run(_ f:()->()) {
 			f()
 		}
 		
@@ -48,12 +48,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		
 		run {
-			let	path		=	NSBundle.mainBundle().pathForResource("Sample2", ofType: "h")!
+			let	path		=	Bundle.main.path(forResource: "Sample2", ofType: "h")!
 			
 			let	idx			=	Index(excludeDeclarationsFromPCH: false, displayDiagnostics: false)
 			let	transunit	=	idx.parseTranslationUnit(path, commandLineArguments: ["-std=c++11"])
 
-			println(transunit)
+			print(transunit)
 			
 //			let	c			=	transunit.cursor
 //			
@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 
-	func applicationWillTerminate(aNotification: NSNotification) {
+	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
 
@@ -87,18 +87,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension Cursor {
 	var sourceCode:String {
 		get {
-			return	stringOfRange(translationUnit, extent)
+            return	stringOfRange(translationUnit, range: extent)
 		}
 	}
 }
 
-func stringOfRange(unit:TranslationUnit, range:SourceRange) -> String {
+func stringOfRange(_ unit:TranslationUnit, range:SourceRange) -> String {
 	var	a		=	[] as [String]
 	let	tkseq	=	unit.tokenize(range)
 	for tk in tkseq {
 		a.append(tk.spelling)
 	}
-	return	join(" ", a)
+	return a.joined(separator: " ")
 }
 
 

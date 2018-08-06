@@ -70,6 +70,9 @@
 		45F3CA8B1A73374800BD4352 /* ClangWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459E8F871A6E92A100EF8DCE /* ClangWrapper.framework */; };
 		45F3CA8C1A73374800BD4352 /* ClangWrapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 459E8F871A6E92A100EF8DCE /* ClangWrapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45F3CA921A7338D400BD4352 /* AST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F3CA911A7338D400BD4352 /* AST.swift */; };
+		538BF9B02118683100061707 /* TestHeader.h in Resources */ = {isa = PBXBuildFile; fileRef = 538BF9AE2118680A00061707 /* TestHeader.h */; };
+		538BF9B2211868FC00061707 /* chrome_url_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 538BF9B1211868FC00061707 /* chrome_url_util.h */; };
+		538BF9B32118696700061707 /* chrome_url_util.h in Resources */ = {isa = PBXBuildFile; fileRef = 538BF9B1211868FC00061707 /* chrome_url_util.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,9 @@
 		45F3CA741A73373300BD4352 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45F3CA771A73373300BD4352 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		45F3CA911A7338D400BD4352 /* AST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AST.swift; sourceTree = "<group>"; };
+		538BF9A9211849EC00061707 /* about_flags.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = about_flags.txt; sourceTree = "<group>"; };
+		538BF9AE2118680A00061707 /* TestHeader.h */ = {isa = PBXFileReference; explicitFileType = text; path = TestHeader.h; sourceTree = "<group>"; };
+		538BF9B1211868FC00061707 /* chrome_url_util.h */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = chrome_url_util.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +412,8 @@
 				45F3CA741A73373300BD4352 /* Images.xcassets */,
 				45F3CA761A73373300BD4352 /* MainMenu.xib */,
 				45F3CA701A73373300BD4352 /* Supporting Files */,
+				538BF9AE2118680A00061707 /* TestHeader.h */,
+				538BF9B1211868FC00061707 /* chrome_url_util.h */,
 			);
 			path = ClangASTViewer;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 		45F3CA701A73373300BD4352 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				538BF9A9211849EC00061707 /* about_flags.txt */,
 				45F3CA711A73373300BD4352 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -430,6 +439,7 @@
 				452D03311A6E9CB900F88F4E /* CXString.h in Headers */,
 				452D03331A6E9CB900F88F4E /* Index.h in Headers */,
 				452D03341A6E9CB900F88F4E /* Platform.h in Headers */,
+				538BF9B2211868FC00061707 /* chrome_url_util.h in Headers */,
 				452D03321A6E9CB900F88F4E /* Documentation.h in Headers */,
 				459E8F8C1A6E92A100EF8DCE /* ClangWrapper.h in Headers */,
 				452D032E1A6E9CB900F88F4E /* BuildSystem.h in Headers */,
@@ -508,6 +518,7 @@
 				TargetAttributes = {
 					4505E5CD1A6F25E600C555A6 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0830;
 					};
 					459E8F861A6E92A100EF8DCE = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -515,7 +526,7 @@
 					};
 					45F3CA6D1A73373300BD4352 = {
 						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -565,6 +576,8 @@
 				45F3CA751A73373300BD4352 /* Images.xcassets in Resources */,
 				45F3CA781A73373300BD4352 /* MainMenu.xib in Resources */,
 				45768D4C1A73793000B2C8CD /* LLDB.framework in Resources */,
+				538BF9B02118683100061707 /* TestHeader.h in Resources */,
+				538BF9B32118696700061707 /* chrome_url_util.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +699,7 @@
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -703,6 +717,7 @@
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -857,6 +872,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -871,6 +887,7 @@
 					"$(DEVELOPER_DIR)/Toolchains/XcodeDefault.xctoolchain/usr/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -879,6 +896,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
