@@ -48,36 +48,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		
 		run {
-			let	path		=	Bundle.main.path(forResource: "Sample2", ofType: "h")!
-			
+            let p = Bundle.main.resourcePath!
+            
+            let args: [String] = [
+                "-ObjC++",
+                "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk",
+                "-F\(p)",
+            ]
+            
+            let path = Bundle.main.path(forResource: "chrome_url_util", ofType: "h")!
 			let	idx			=	Index(excludeDeclarationsFromPCH: false, displayDiagnostics: false)
-			let	transunit	=	idx.parseTranslationUnit(path, commandLineArguments: ["-std=c++11"])
+			let	transunit	=	idx.parseTranslationUnit(path, commandLineArguments: args)
 
 			print(transunit)
-			
-//			let	c			=	transunit.cursor
-//			
-//			struct Util {
-//				static func query(c:Cursor, depth:Int) {
-//					let	indent	=	join("", Repeat(count: depth, repeatedValue: "  "))
-//					let	extra	=	c.spelling == "" ? " " + c.sourceCode : ""
-//					println("\(indent)\(c.kind) [\(c.spelling)]\(extra)")
-//
-//					for c1 in c.children {
-//						Util.query(c1, depth: depth+1)
-//					}
-//				}
-//			}
-//			
-//			Util.query(c, depth: 0)
+            
+            let coursors = transunit.cursor.children.filter { $0.location.fileName == path}
+            
+            print(coursors)
 		}
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
-
-
 }
 
 

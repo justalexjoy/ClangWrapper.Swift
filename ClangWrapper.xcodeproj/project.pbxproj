@@ -73,6 +73,7 @@
 		538BF9B02118683100061707 /* TestHeader.h in Resources */ = {isa = PBXBuildFile; fileRef = 538BF9AE2118680A00061707 /* TestHeader.h */; };
 		538BF9B2211868FC00061707 /* chrome_url_util.h in Headers */ = {isa = PBXBuildFile; fileRef = 538BF9B1211868FC00061707 /* chrome_url_util.h */; };
 		538BF9B32118696700061707 /* chrome_url_util.h in Resources */ = {isa = PBXBuildFile; fileRef = 538BF9B1211868FC00061707 /* chrome_url_util.h */; };
+		53AF5727211A11C6003DA63A /* chrome_url_util.h in Resources */ = {isa = PBXBuildFile; fileRef = 538BF9B1211868FC00061707 /* chrome_url_util.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -559,6 +560,7 @@
 				4505E5D81A6F25E600C555A6 /* MainMenu.xib in Resources */,
 				4514409B1A6F38F700242EA3 /* Sample.c in Resources */,
 				45494C301A6F51DE00859DDF /* Sample2.h in Resources */,
+				53AF5727211A11C6003DA63A /* chrome_url_util.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

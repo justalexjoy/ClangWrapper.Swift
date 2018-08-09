@@ -24,11 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let p1 = p + "/LLDB.framework/Headers/LLDB.h"
 
         let args: [String] = [
+              "-ObjC++",
 //            "-x", "objc",
 //            "-std=c++11",
 //            //"-stdlib=libc++",
             "-isysroot", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk",
-            "-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers",
+//            "-I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers",
             "-F\(p)",
         ]
         
@@ -48,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		////
 		
-		let	root	=	ASTRootNode()
+		let	root = ASTRootNode()
 		root.translationUnitChildNodes.append(TranslationUnitNode(tu))
 		
 		mainSplit.syntaxTree.syntaxOutline.rootNodeRepresentation	=	root
@@ -169,7 +170,7 @@ class ScrollViewController: NSViewController {
 }
 
 class SyntaxTreeViewController: ScrollViewController {
-	let	syntaxOutline	=	SyntaxOutlineViewController()
+	let	syntaxOutline =	SyntaxOutlineViewController()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -181,7 +182,7 @@ class SyntaxTreeViewController: ScrollViewController {
 }
 
 class TypeTreeViewController: ScrollViewController {
-	let	typeOutline	=	SyntaxOutlineViewController()
+	let	typeOutline	= SyntaxOutlineViewController()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
